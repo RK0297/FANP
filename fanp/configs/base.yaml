@@ -1,0 +1,43 @@
+# Base configuration for all FANP experiments
+# Override per-experiment via configs/experiment/*.yaml
+
+# ── Data ──────────────────────────────────────────────────────────────────
+data:
+  dataset: cifar10          # cifar10 | cifar100
+  data_dir: ./data/downloads
+  batch_size: 128
+  num_workers: 4
+  val_split: 0.1            # fraction of training set used for validation
+
+# ── Model ─────────────────────────────────────────────────────────────────
+model:
+  arch: resnet56            # resnet56 | resnet20
+  num_classes: 10
+
+# ── Training ──────────────────────────────────────────────────────────────
+training:
+  epochs: 200
+  optimizer: sgd
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 1.0e-4
+  # Learning rate schedule: decay at epochs 100 and 150
+  lr_milestones: [100, 150]
+  lr_gamma: 0.1             # multiply lr by this at each milestone
+
+# ── Logging ───────────────────────────────────────────────────────────────
+logging:
+  use_wandb: true
+  project: fanp
+  run_name: baseline_resnet56_cifar10
+  log_interval: 50          # log every N batches
+
+# ── Compute ──────────────────────────────────────────────────────────────
+device: cuda                # cuda | cpu
+seed: 42
+
+# ── Checkpointing ────────────────────────────────────────────────────────
+checkpoint:
+  save_dir: ./checkpoints
+  save_every: 10            # save checkpoint every N epochs
+  keep_best: true           # always keep best val-accuracy checkpoint

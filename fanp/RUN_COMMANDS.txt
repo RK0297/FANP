@@ -1,0 +1,91 @@
+FANP MANUAL RUN COMMANDS
+
+Run these from PowerShell one by one.
+⚠️  IMPORTANT: Always start by running step 0 to change to the fanp folder.
+    All commands in steps 1-14 assume you are inside the fanp folder.
+
+0. Go to project folder (REQUIRED FIRST)
+Set-Location "C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp"
+
+1. Activate UTF-8 output for this terminal session
+$env:PYTHONIOENCODING = "utf-8"
+
+2. Optional: verify Python path
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe --version
+
+3. Optional: verify GPU is visible
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe -c "import torch; print('GPU:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NOT FOUND')"
+
+4. Optional: verify checkpoint exists
+Test-Path ".\checkpoints\resnet56_best.pth"
+
+5. Phase 2 smoke test
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe test_phase2.py
+
+6. Phase 3 smoke test
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe test_phase3.py
+
+7. Main experiment full run  [only if you completed step 0]
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\main_experiment.py
+
+8. Ablation full run  [only if you completed step 0]
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\ablations\component_ablation.py
+
+OPTIONAL COMMANDS
+
+9. Main experiment quick check
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\main_experiment.py --quick
+
+10. Ablation quick check
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\ablations\component_ablation.py --quick
+
+11. Main experiment specific sparsity only
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\main_experiment.py --sparsity 0.70
+
+12. Resume interrupted main experiment
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\main_experiment.py --resume .\results\main_YYYYMMDD_HHMMSS.json
+
+13. Custom output path for main experiment
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\main_experiment.py --out .\results\main_custom.json
+
+14. Custom output path for ablation
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe experiments\ablations\component_ablation.py --out .\results\ablation_custom.json
+
+ALTERNATE LAUNCH (if you are already inside fanp\experiments)
+
+Main experiment full run:
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe main_experiment.py
+
+Main experiment quick check:
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe main_experiment.py --quick
+
+Ablation full run:
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe .\ablations\component_ablation.py
+
+Ablation quick check:
+C:\Users\Radhakrishna\Desktop\DL_PROJECT\fanp_env\Scripts\python.exe .\ablations\component_ablation.py --quick
+
+WHAT GETS SAVED NOW
+
+Main experiment saves:
+- results\main_<timestamp>.json
+- results\main_<timestamp>_summary.txt
+- meta.dense_test_acc
+- meta.config
+- param_total, param_nonzero, compression_ratio for each method
+- wall_clock_sec for each method
+- step_acc recovery traces
+- FANP round_log with mean_fs, rate_used, n_pruned
+- pruned FANP models in checkpoints\pruned\fanp_sp*.pth
+
+Ablation saves:
+- results\ablation_<timestamp>.json
+- round_log per ablation config
+- step_acc recovery traces
+- param_total and param_nonzero
+
+RECOMMENDED ORDER
+1. Run commands 0 to 4 once.
+2. Run commands 5 and 6.
+3. Run command 7 and wait for completion.
+4. Run command 8 and wait for completion.
