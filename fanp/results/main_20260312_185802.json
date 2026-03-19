@@ -1,0 +1,59 @@
+{
+  "magnitude": {
+    "0.3": {
+      "method": "magnitude",
+      "target": 0.3,
+      "sparsity": 0.2997742817414833,
+      "test_acc": 92.61
+    }
+  },
+  "magnitude_ft": {
+    "0.3": {
+      "method": "magnitude_ft",
+      "target": 0.3,
+      "sparsity": 0.29947128844961385,
+      "test_acc": 92.71,
+      "val_before_ft": 93.2,
+      "val_after_ft": 93.4,
+      "val_ft_gain": 0.20000000000000284
+    }
+  },
+  "fanp": {
+    "0.3": {
+      "method": "fanp",
+      "target": 0.3,
+      "sparsity": 0.2699799413743212,
+      "test_acc": 90.45,
+      "pruning_rounds": 3,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 90.6,
+          "val_after_ft": 92.74,
+          "val_ft_gain": 2.1400000000000006,
+          "slope": 0.10700000000000003,
+          "overpruned": false
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 87.74,
+          "val_after_ft": 91.84,
+          "val_ft_gain": 4.1000000000000085,
+          "slope": 0.20500000000000043,
+          "overpruned": false
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 70.86,
+          "val_after_ft": 91.2,
+          "val_ft_gain": 20.340000000000003,
+          "slope": 1.0170000000000001,
+          "overpruned": false
+        }
+      ]
+    }
+  }
+}

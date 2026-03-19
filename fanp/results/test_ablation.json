@@ -1,0 +1,126 @@
+[
+  {
+    "name": "Magnitude",
+    "desc": "Baseline (Han et al. 2015)",
+    "sparsity": 0.6994741069918639,
+    "test_acc": 81.95
+  },
+  {
+    "name": "FANP-Full",
+    "desc": "Full FANP (Fisher + GradVar + Taylor, adaptive rate)",
+    "alpha": 0.5,
+    "beta": 0.3,
+    "gamma": 0.2,
+    "tau": 0.5,
+    "sparsity": 0.1892850767583006,
+    "test_acc": 90.29,
+    "pruning_rounds": 2,
+    "round_log": [
+      {
+        "round": 0,
+        "sparsity": 0.0996237246096319,
+        "val_before_ft": 91.24,
+        "val_after_ft": 92.28,
+        "val_ft_gain": 1.0400000000000063,
+        "slope": 0.20800000000000124,
+        "overpruned": false,
+        "step_acc": [
+          [
+            0,
+            91.24
+          ],
+          [
+            5,
+            92.28
+          ]
+        ],
+        "mean_fs": 0.01496170274913311,
+        "rate_used": 0.1,
+        "n_pruned": 84830
+      },
+      {
+        "round": 1,
+        "sparsity": 0.1892850767583006,
+        "val_before_ft": 88.66,
+        "val_after_ft": 90.8,
+        "val_ft_gain": 2.1400000000000006,
+        "slope": 0.4280000000000001,
+        "overpruned": false,
+        "step_acc": [
+          [
+            0,
+            88.66
+          ],
+          [
+            5,
+            90.8
+          ]
+        ],
+        "mean_fs": 0.011848763562738895,
+        "rate_used": 0.1,
+        "n_pruned": 76347
+      }
+    ],
+    "param_total": 855770,
+    "param_nonzero": 694593
+  },
+  {
+    "name": "Fisher-only",
+    "desc": "Fisher only \u2014 GradVar and Taylor disabled",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "gamma": 0.0,
+    "tau": 0.5,
+    "sparsity": 0.1892850767583006,
+    "test_acc": 90.57,
+    "pruning_rounds": 2,
+    "round_log": [
+      {
+        "round": 0,
+        "sparsity": 0.0996237246096319,
+        "val_before_ft": 91.1,
+        "val_after_ft": 92.24,
+        "val_ft_gain": 1.1400000000000006,
+        "slope": 0.22800000000000012,
+        "overpruned": false,
+        "step_acc": [
+          [
+            0,
+            91.1
+          ],
+          [
+            5,
+            92.24
+          ]
+        ],
+        "mean_fs": 0.014966467395424843,
+        "rate_used": 0.1,
+        "n_pruned": 84830
+      },
+      {
+        "round": 1,
+        "sparsity": 0.1892850767583006,
+        "val_before_ft": 89.66,
+        "val_after_ft": 91.74,
+        "val_ft_gain": 2.0799999999999983,
+        "slope": 0.41599999999999965,
+        "overpruned": false,
+        "step_acc": [
+          [
+            0,
+            89.66
+          ],
+          [
+            5,
+            91.74
+          ]
+        ],
+        "mean_fs": 0.020388031378388405,
+        "rate_used": 0.1,
+        "n_pruned": 76347
+      }
+    ],
+    "param_total": 855770,
+    "param_nonzero": 694593
+  }
+]

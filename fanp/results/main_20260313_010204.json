@@ -1,0 +1,1108 @@
+{
+  "magnitude": {
+    "0.3": {
+      "method": "magnitude",
+      "target": 0.3,
+      "sparsity": 0.2997742817414833,
+      "test_acc": 92.61,
+      "param_total": 855770,
+      "param_nonzero": 600511,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.4250696490155883,
+      "wall_clock_sec": 1.8299107551574707
+    },
+    "0.5": {
+      "method": "magnitude",
+      "target": 0.5,
+      "sparsity": 0.49962419436667355,
+      "test_acc": 91.45,
+      "param_total": 855770,
+      "param_nonzero": 430338,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.988599658872793,
+      "wall_clock_sec": 2.11169171333313
+    },
+    "0.7": {
+      "method": "magnitude",
+      "target": 0.7,
+      "sparsity": 0.6994741069918639,
+      "test_acc": 81.95,
+      "param_total": 855770,
+      "param_nonzero": 260165,
+      "param_total_dense": 855770,
+      "compression_ratio": 3.289335613937309,
+      "wall_clock_sec": 2.332024335861206
+    }
+  },
+  "magnitude_ft": {
+    "0.3": {
+      "method": "magnitude_ft",
+      "target": 0.3,
+      "sparsity": 0.29947128844961385,
+      "test_acc": 92.94,
+      "val_before_ft": 93.2,
+      "val_after_ft": 93.56,
+      "val_ft_gain": 0.35999999999999943,
+      "step_acc": [
+        [
+          0,
+          93.2
+        ],
+        [
+          100,
+          93.32
+        ],
+        [
+          200,
+          93.54
+        ],
+        [
+          300,
+          93.38
+        ],
+        [
+          400,
+          93.52
+        ],
+        [
+          500,
+          93.56
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 600769,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.42445765344084,
+      "wall_clock_sec": 25.533283948898315
+    },
+    "0.5": {
+      "method": "magnitude_ft",
+      "target": 0.5,
+      "sparsity": 0.4990827993761626,
+      "test_acc": 92.52,
+      "val_before_ft": 92.18,
+      "val_after_ft": 93.12,
+      "val_ft_gain": 0.9399999999999977,
+      "step_acc": [
+        [
+          0,
+          92.18
+        ],
+        [
+          100,
+          93.12
+        ],
+        [
+          200,
+          93.16
+        ],
+        [
+          300,
+          93.12
+        ],
+        [
+          400,
+          93.12
+        ],
+        [
+          500,
+          93.12
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 430799,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.9864716491913863,
+      "wall_clock_sec": 34.91842770576477
+    },
+    "0.7": {
+      "method": "magnitude_ft",
+      "target": 0.7,
+      "sparsity": 0.6985557319754223,
+      "test_acc": 91.69,
+      "val_before_ft": 82.8,
+      "val_after_ft": 92.34,
+      "val_ft_gain": 9.540000000000006,
+      "step_acc": [
+        [
+          0,
+          82.8
+        ],
+        [
+          100,
+          91.96
+        ],
+        [
+          200,
+          92.04
+        ],
+        [
+          300,
+          92.44
+        ],
+        [
+          400,
+          92.06
+        ],
+        [
+          500,
+          92.34
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 260947,
+      "param_total_dense": 855770,
+      "compression_ratio": 3.279478208218527,
+      "wall_clock_sec": 34.84510779380798
+    }
+  },
+  "fanp": {
+    "0.3": {
+      "method": "fanp",
+      "target": 0.3,
+      "sparsity": 0.34260555440726054,
+      "test_acc": 91.13,
+      "pruning_rounds": 4,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 70.98,
+          "val_after_ft": 93.04,
+          "val_ft_gain": 22.060000000000002,
+          "slope": 0.044120000000000006,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              70.98
+            ],
+            [
+              100,
+              93.04
+            ],
+            [
+              200,
+              92.94
+            ],
+            [
+              300,
+              93.02
+            ],
+            [
+              400,
+              93.08
+            ],
+            [
+              500,
+              93.04
+            ]
+          ],
+          "mean_fs": 0.03940056264400482,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 48.18,
+          "val_after_ft": 92.6,
+          "val_ft_gain": 44.419999999999995,
+          "slope": 0.08883999999999999,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              48.18
+            ],
+            [
+              100,
+              92.46
+            ],
+            [
+              200,
+              92.26
+            ],
+            [
+              300,
+              92.64
+            ],
+            [
+              400,
+              92.68
+            ],
+            [
+              500,
+              92.6
+            ]
+          ],
+          "mean_fs": 0.043714672327041626,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 37.82,
+          "val_after_ft": 92.2,
+          "val_ft_gain": 54.38,
+          "slope": 0.10876000000000001,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              37.82
+            ],
+            [
+              100,
+              92.08
+            ],
+            [
+              200,
+              92.24
+            ],
+            [
+              300,
+              92.3
+            ],
+            [
+              400,
+              92.28
+            ],
+            [
+              500,
+              92.2
+            ]
+          ],
+          "mean_fs": 0.0479700081050396,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        },
+        {
+          "round": 3,
+          "sparsity": 0.34260555440726054,
+          "val_before_ft": 17.76,
+          "val_after_ft": 91.9,
+          "val_ft_gain": 74.14,
+          "slope": 0.14828,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              17.76
+            ],
+            [
+              100,
+              91.28
+            ],
+            [
+              200,
+              91.8
+            ],
+            [
+              300,
+              91.92
+            ],
+            [
+              400,
+              91.92
+            ],
+            [
+              500,
+              91.9
+            ]
+          ],
+          "mean_fs": 0.049891673028469086,
+          "rate_used": 0.1,
+          "n_pruned": 61841
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 564040,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.5172150911282887,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_PROJECT\\fanp\\checkpoints\\pruned\\fanp_sp0.30.pth",
+      "wall_clock_sec": 183.51027655601501
+    },
+    "0.5": {
+      "method": "fanp",
+      "target": 0.5,
+      "sparsity": 0.5197391908904715,
+      "test_acc": 89.96,
+      "pruning_rounds": 7,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 66.22,
+          "val_after_ft": 93.14,
+          "val_ft_gain": 26.92,
+          "slope": 0.053840000000000006,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              66.22
+            ],
+            [
+              100,
+              93.12
+            ],
+            [
+              200,
+              93.1
+            ],
+            [
+              300,
+              93.24
+            ],
+            [
+              400,
+              93.14
+            ],
+            [
+              500,
+              93.14
+            ]
+          ],
+          "mean_fs": 0.03487618640065193,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 61.34,
+          "val_after_ft": 92.86,
+          "val_ft_gain": 31.519999999999996,
+          "slope": 0.06304,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              61.34
+            ],
+            [
+              100,
+              92.56
+            ],
+            [
+              200,
+              92.74
+            ],
+            [
+              300,
+              92.94
+            ],
+            [
+              400,
+              92.86
+            ],
+            [
+              500,
+              92.86
+            ]
+          ],
+          "mean_fs": 0.035356637090444565,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 37.94,
+          "val_after_ft": 92.24,
+          "val_ft_gain": 54.3,
+          "slope": 0.10859999999999999,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              37.94
+            ],
+            [
+              100,
+              92.02
+            ],
+            [
+              200,
+              92.28
+            ],
+            [
+              300,
+              92.16
+            ],
+            [
+              400,
+              92.16
+            ],
+            [
+              500,
+              92.24
+            ]
+          ],
+          "mean_fs": 0.04536636546254158,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        },
+        {
+          "round": 3,
+          "sparsity": 0.34260555440726054,
+          "val_before_ft": 16.98,
+          "val_after_ft": 91.6,
+          "val_ft_gain": 74.61999999999999,
+          "slope": 0.14923999999999998,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              16.98
+            ],
+            [
+              100,
+              91.26
+            ],
+            [
+              200,
+              91.7
+            ],
+            [
+              300,
+              91.78
+            ],
+            [
+              400,
+              91.76
+            ],
+            [
+              500,
+              91.6
+            ]
+          ],
+          "mean_fs": 0.05346812680363655,
+          "rate_used": 0.1,
+          "n_pruned": 61841
+        },
+        {
+          "round": 4,
+          "sparsity": 0.4079687235761664,
+          "val_before_ft": 18.5,
+          "val_after_ft": 91.72,
+          "val_ft_gain": 73.22,
+          "slope": 0.14644,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              18.5
+            ],
+            [
+              100,
+              90.96
+            ],
+            [
+              200,
+              91.48
+            ],
+            [
+              300,
+              91.82
+            ],
+            [
+              400,
+              91.7
+            ],
+            [
+              500,
+              91.72
+            ]
+          ],
+          "mean_fs": 0.04707639291882515,
+          "rate_used": 0.1,
+          "n_pruned": 55657
+        },
+        {
+          "round": 5,
+          "sparsity": 0.4667952235104004,
+          "val_before_ft": 34.84,
+          "val_after_ft": 91.36,
+          "val_ft_gain": 56.519999999999996,
+          "slope": 0.11303999999999999,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              34.84
+            ],
+            [
+              100,
+              90.7
+            ],
+            [
+              200,
+              90.9
+            ],
+            [
+              300,
+              91.28
+            ],
+            [
+              400,
+              91.44
+            ],
+            [
+              500,
+              91.36
+            ]
+          ],
+          "mean_fs": 0.05532216653227806,
+          "rate_used": 0.1,
+          "n_pruned": 50091
+        },
+        {
+          "round": 6,
+          "sparsity": 0.5197391908904715,
+          "val_before_ft": 39.18,
+          "val_after_ft": 90.88,
+          "val_ft_gain": 51.699999999999996,
+          "slope": 0.10339999999999999,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              39.18
+            ],
+            [
+              100,
+              90.32
+            ],
+            [
+              200,
+              90.48
+            ],
+            [
+              300,
+              90.82
+            ],
+            [
+              400,
+              91.02
+            ],
+            [
+              500,
+              90.88
+            ]
+          ],
+          "mean_fs": 0.05751332268118858,
+          "rate_used": 0.1,
+          "n_pruned": 45082
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 413210,
+      "param_total_dense": 855770,
+      "compression_ratio": 2.0710292587304275,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_PROJECT\\fanp\\checkpoints\\pruned\\fanp_sp0.50.pth",
+      "wall_clock_sec": 317.0499527454376
+    },
+    "0.7": {
+      "method": "fanp",
+      "target": 0.7,
+      "sparsity": 0.7148703940322065,
+      "test_acc": 87.66,
+      "pruning_rounds": 12,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 84.68,
+          "val_after_ft": 93.4,
+          "val_ft_gain": 8.719999999999999,
+          "slope": 0.017439999999999997,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              84.68
+            ],
+            [
+              100,
+              93.42
+            ],
+            [
+              200,
+              93.44
+            ],
+            [
+              300,
+              93.34
+            ],
+            [
+              400,
+              93.42
+            ],
+            [
+              500,
+              93.4
+            ]
+          ],
+          "mean_fs": 0.034767527133226395,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 69.02,
+          "val_after_ft": 92.74,
+          "val_ft_gain": 23.72,
+          "slope": 0.047439999999999996,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              69.02
+            ],
+            [
+              100,
+              92.44
+            ],
+            [
+              200,
+              92.6
+            ],
+            [
+              300,
+              92.78
+            ],
+            [
+              400,
+              92.68
+            ],
+            [
+              500,
+              92.74
+            ]
+          ],
+          "mean_fs": 0.04140733927488327,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 30.2,
+          "val_after_ft": 92.46,
+          "val_ft_gain": 62.25999999999999,
+          "slope": 0.12451999999999998,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              30.2
+            ],
+            [
+              100,
+              92.26
+            ],
+            [
+              200,
+              92.26
+            ],
+            [
+              300,
+              92.36
+            ],
+            [
+              400,
+              92.34
+            ],
+            [
+              500,
+              92.46
+            ]
+          ],
+          "mean_fs": 0.042886942625045776,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        },
+        {
+          "round": 3,
+          "sparsity": 0.34260555440726054,
+          "val_before_ft": 21.78,
+          "val_after_ft": 92.18,
+          "val_ft_gain": 70.4,
+          "slope": 0.1408,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              21.78
+            ],
+            [
+              100,
+              92.04
+            ],
+            [
+              200,
+              92.02
+            ],
+            [
+              300,
+              92.24
+            ],
+            [
+              400,
+              92.32
+            ],
+            [
+              500,
+              92.18
+            ]
+          ],
+          "mean_fs": 0.05578749254345894,
+          "rate_used": 0.1,
+          "n_pruned": 61841
+        },
+        {
+          "round": 4,
+          "sparsity": 0.4079687235761664,
+          "val_before_ft": 32.62,
+          "val_after_ft": 91.58,
+          "val_ft_gain": 58.96,
+          "slope": 0.11792,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              32.62
+            ],
+            [
+              100,
+              91.26
+            ],
+            [
+              200,
+              91.48
+            ],
+            [
+              300,
+              91.62
+            ],
+            [
+              400,
+              91.68
+            ],
+            [
+              500,
+              91.58
+            ]
+          ],
+          "mean_fs": 0.05223529040813446,
+          "rate_used": 0.1,
+          "n_pruned": 55657
+        },
+        {
+          "round": 5,
+          "sparsity": 0.4667952235104004,
+          "val_before_ft": 14.48,
+          "val_after_ft": 90.58,
+          "val_ft_gain": 76.1,
+          "slope": 0.1522,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              14.48
+            ],
+            [
+              100,
+              89.54
+            ],
+            [
+              200,
+              90.28
+            ],
+            [
+              300,
+              90.52
+            ],
+            [
+              400,
+              90.72
+            ],
+            [
+              500,
+              90.58
+            ]
+          ],
+          "mean_fs": 0.05935264378786087,
+          "rate_used": 0.1,
+          "n_pruned": 50091
+        },
+        {
+          "round": 6,
+          "sparsity": 0.5197391908904715,
+          "val_before_ft": 16.8,
+          "val_after_ft": 90.0,
+          "val_ft_gain": 73.2,
+          "slope": 0.1464,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              16.8
+            ],
+            [
+              100,
+              88.98
+            ],
+            [
+              200,
+              89.76
+            ],
+            [
+              300,
+              90.14
+            ],
+            [
+              400,
+              90.14
+            ],
+            [
+              500,
+              90.0
+            ]
+          ],
+          "mean_fs": 0.05504385009407997,
+          "rate_used": 0.1,
+          "n_pruned": 45082
+        },
+        {
+          "round": 7,
+          "sparsity": 0.5673889964110562,
+          "val_before_ft": 38.16,
+          "val_after_ft": 90.26,
+          "val_ft_gain": 52.10000000000001,
+          "slope": 0.10420000000000001,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              38.16
+            ],
+            [
+              100,
+              89.04
+            ],
+            [
+              200,
+              89.68
+            ],
+            [
+              300,
+              90.3
+            ],
+            [
+              400,
+              90.42
+            ],
+            [
+              500,
+              90.26
+            ]
+          ],
+          "mean_fs": 0.05248676985502243,
+          "rate_used": 0.1,
+          "n_pruned": 40574
+        },
+        {
+          "round": 8,
+          "sparsity": 0.6102742911366241,
+          "val_before_ft": 63.34,
+          "val_after_ft": 89.46,
+          "val_ft_gain": 26.11999999999999,
+          "slope": 0.05223999999999998,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              63.34
+            ],
+            [
+              100,
+              88.5
+            ],
+            [
+              200,
+              89.34
+            ],
+            [
+              300,
+              89.38
+            ],
+            [
+              400,
+              89.58
+            ],
+            [
+              500,
+              89.46
+            ]
+          ],
+          "mean_fs": 0.05478837341070175,
+          "rate_used": 0.1,
+          "n_pruned": 36517
+        },
+        {
+          "round": 9,
+          "sparsity": 0.648870704071854,
+          "val_before_ft": 71.08,
+          "val_after_ft": 89.18,
+          "val_ft_gain": 18.10000000000001,
+          "slope": 0.03620000000000002,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              71.08
+            ],
+            [
+              100,
+              88.54
+            ],
+            [
+              200,
+              89.04
+            ],
+            [
+              300,
+              89.08
+            ],
+            [
+              400,
+              89.42
+            ],
+            [
+              500,
+              89.18
+            ]
+          ],
+          "mean_fs": 0.05662533640861511,
+          "rate_used": 0.1,
+          "n_pruned": 32865
+        },
+        {
+          "round": 10,
+          "sparsity": 0.6836068885172589,
+          "val_before_ft": 28.32,
+          "val_after_ft": 88.98,
+          "val_ft_gain": 60.660000000000004,
+          "slope": 0.12132000000000001,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              28.32
+            ],
+            [
+              100,
+              87.88
+            ],
+            [
+              200,
+              88.42
+            ],
+            [
+              300,
+              88.86
+            ],
+            [
+              400,
+              89.12
+            ],
+            [
+              500,
+              88.98
+            ]
+          ],
+          "mean_fs": 0.047439251095056534,
+          "rate_used": 0.1,
+          "n_pruned": 29578
+        },
+        {
+          "round": 11,
+          "sparsity": 0.7148703940322065,
+          "val_before_ft": 53.84,
+          "val_after_ft": 88.54,
+          "val_ft_gain": 34.7,
+          "slope": 0.0694,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              53.84
+            ],
+            [
+              100,
+              87.2
+            ],
+            [
+              200,
+              88.06
+            ],
+            [
+              300,
+              88.26
+            ],
+            [
+              400,
+              88.68
+            ],
+            [
+              500,
+              88.54
+            ]
+          ],
+          "mean_fs": 0.04343912750482559,
+          "rate_used": 0.1,
+          "n_pruned": 26621
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 247055,
+      "param_total_dense": 855770,
+      "compression_ratio": 3.4638845601181925,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_PROJECT\\fanp\\checkpoints\\pruned\\fanp_sp0.70.pth",
+      "wall_clock_sec": 614.5611252784729
+    }
+  },
+  "meta": {
+    "dense_test_acc": 92.89,
+    "param_total_dense": 855770,
+    "param_nonzero_dense": 855770,
+    "run_timestamp": "20260313_010204",
+    "checkpoint": "./checkpoints/resnet56_best.pth",
+    "config": {
+      "sparsity_levels": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "checkpoint_path": "./checkpoints/resnet56_best.pth",
+      "data_dir": "./data/downloads",
+      "batch_size": 128,
+      "num_workers": 0,
+      "fanp_base_rate": 0.1,
+      "fanp_tau": 0.5,
+      "fanp_max_rounds": 30,
+      "fanp_acc_batches": 20,
+      "ft_n_steps": 500,
+      "ft_lr": 0.005,
+      "ft_eval_interval": 100,
+      "device": "cuda",
+      "seed": 42
+    }
+  }
+}
