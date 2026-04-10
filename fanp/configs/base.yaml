@@ -6,7 +6,7 @@ data:
   dataset: cifar10          # cifar10 | cifar100
   data_dir: ./data/downloads
   batch_size: 128
-  num_workers: 4
+  num_workers: 0            # Windows-safe default for DataLoader workers
   val_split: 0.1            # fraction of training set used for validation
 
 # ── Model ─────────────────────────────────────────────────────────────────
@@ -31,6 +31,7 @@ logging:
   project: fanp
   run_name: baseline_resnet56_cifar10
   log_interval: 50          # log every N batches
+  tags: [baseline, cifar10, resnet56]
 
 # ── Compute ──────────────────────────────────────────────────────────────
 device: cuda                # cuda | cpu
@@ -41,3 +42,6 @@ checkpoint:
   save_dir: ./checkpoints
   save_every: 10            # save checkpoint every N epochs
   keep_best: true           # always keep best val-accuracy checkpoint
+
+# Resume behavior (null = auto-detect latest checkpoint in trainer)
+resume: null

@@ -1,0 +1,29 @@
+==========================================================================
+FANP RESULTS SUMMARY (AUTO-GENERATED)
+==========================================================================
+
+[Main Experiment Runs]
+- Total main runs found: 7
+- Latest main run: main_20260325_013723.json
+- Best dense test_acc: 92.89% (main_20260313_010204.json)
+- Best FANP @90% sparsity: 90.35% (main_20260325_013723.json)
+
+- Latest run comparison table:
+  Sparsity | Magnitude | Mag+FT | FANP
+  -------- | --------- | ------ | ----
+       0.3 |    92.61% | 92.72% | 89.97%
+       0.5 |    91.45% | 92.28% | 90.51%
+       0.7 |    81.95% | 90.72% | 90.17%
+       0.9 |    23.57% | 76.16% | 90.35%
+
+[Ablation Runs]
+- Total ablation runs found: 1
+- Latest ablation run: ablation_20260325_013944.json
+- Best method in latest ablation: Taylor-only (92.56%)
+
+[Project Readiness Snapshot]
+- Core research pipeline: complete
+- P0 production hardening: complete
+- P1 validation guards: in progress (schema + CI added)
+- Next: CI quick-run generation + report dashboards
+

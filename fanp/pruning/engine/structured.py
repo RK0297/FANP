@@ -23,6 +23,9 @@ Lowest I_f filters = safe to remove.
 """
 from __future__ import annotations
 
+import os
+from datetime import datetime
+
 import torch
 import torch.nn as nn
 from typing import Dict, List, Optional
@@ -30,6 +33,22 @@ from typing import Dict, List, Optional
 import torch_pruning as tp
 
 from pruning.importance.composite import ForgettingScore
+
+
+def build_run_id() -> str:
+    """Return a compact timestamp run identifier."""
+    return datetime.now().strftime("%Y%m%d_%H%M%S")
+
+
+def build_pruned_model_path(
+    pruned_dir: str,
+    target_sparsity: float,
+    run_id: str | None = None,
+) -> str:
+    """Build a non-overwriting path for a pruned model checkpoint."""
+    run_id = run_id or build_run_id()
+    filename = f"fanp_sp{target_sparsity:.2f}_{run_id}.pth"
+    return os.path.join(pruned_dir, filename)
 
 
 # ---------------------------------------------------------------------------

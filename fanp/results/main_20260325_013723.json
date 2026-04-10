@@ -1,0 +1,581 @@
+{
+  "magnitude": {
+    "0.3": {
+      "method": "magnitude",
+      "target": 0.3,
+      "sparsity": 0.2997742817414833,
+      "test_acc": 92.61,
+      "param_total": 855770,
+      "param_nonzero": 600511,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.4250696490155883,
+      "wall_clock_sec": 2.5140535831451416
+    },
+    "0.5": {
+      "method": "magnitude",
+      "target": 0.5,
+      "sparsity": 0.49962419436667355,
+      "test_acc": 91.45,
+      "param_total": 855770,
+      "param_nonzero": 430338,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.988599658872793,
+      "wall_clock_sec": 2.0132222175598145
+    },
+    "0.7": {
+      "method": "magnitude",
+      "target": 0.7,
+      "sparsity": 0.6994741069918639,
+      "test_acc": 81.95,
+      "param_total": 855770,
+      "param_nonzero": 260165,
+      "param_total_dense": 855770,
+      "compression_ratio": 3.289335613937309,
+      "wall_clock_sec": 2.4171488285064697
+    },
+    "0.9": {
+      "method": "magnitude",
+      "target": 0.9,
+      "sparsity": 0.8993228452244499,
+      "test_acc": 23.57,
+      "param_total": 855770,
+      "param_nonzero": 89993,
+      "param_total_dense": 855770,
+      "compression_ratio": 9.509295167401909,
+      "wall_clock_sec": 1.759558916091919
+    }
+  },
+  "magnitude_ft": {
+    "0.3": {
+      "method": "magnitude_ft",
+      "target": 0.3,
+      "sparsity": 0.29947128844961385,
+      "test_acc": 92.72,
+      "val_before_ft": 93.2,
+      "val_after_ft": 93.4,
+      "val_ft_gain": 0.20000000000000284,
+      "step_acc": [
+        [
+          0,
+          93.2
+        ],
+        [
+          10,
+          93.32
+        ],
+        [
+          20,
+          93.4
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 600769,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.42445765344084,
+      "wall_clock_sec": 6.924429893493652
+    },
+    "0.5": {
+      "method": "magnitude_ft",
+      "target": 0.5,
+      "sparsity": 0.4990827993761626,
+      "test_acc": 92.28,
+      "val_before_ft": 92.18,
+      "val_after_ft": 92.86,
+      "val_ft_gain": 0.6799999999999926,
+      "step_acc": [
+        [
+          0,
+          92.18
+        ],
+        [
+          10,
+          92.76
+        ],
+        [
+          20,
+          92.86
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 430799,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.9864716491913863,
+      "wall_clock_sec": 6.135112762451172
+    },
+    "0.7": {
+      "method": "magnitude_ft",
+      "target": 0.7,
+      "sparsity": 0.6985557319754223,
+      "test_acc": 90.72,
+      "val_before_ft": 82.8,
+      "val_after_ft": 91.36,
+      "val_ft_gain": 8.560000000000002,
+      "step_acc": [
+        [
+          0,
+          82.8
+        ],
+        [
+          10,
+          90.56
+        ],
+        [
+          20,
+          91.36
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 260947,
+      "param_total_dense": 855770,
+      "compression_ratio": 3.279478208218527,
+      "wall_clock_sec": 6.507721424102783
+    },
+    "0.9": {
+      "method": "magnitude_ft",
+      "target": 0.9,
+      "sparsity": 0.897850156898852,
+      "test_acc": 76.16,
+      "val_before_ft": 23.92,
+      "val_after_ft": 77.74,
+      "val_ft_gain": 53.81999999999999,
+      "step_acc": [
+        [
+          0,
+          23.92
+        ],
+        [
+          10,
+          64.7
+        ],
+        [
+          20,
+          77.74
+        ]
+      ],
+      "param_total": 855770,
+      "param_nonzero": 91247,
+      "param_total_dense": 855770,
+      "compression_ratio": 9.378609707716418,
+      "wall_clock_sec": 4.992174386978149
+    }
+  },
+  "fanp": {
+    "0.3": {
+      "method": "fanp",
+      "target": 0.3,
+      "sparsity": 0.2699799413743212,
+      "test_acc": 89.97,
+      "pruning_rounds": 3,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 89.76,
+          "val_after_ft": 93.24,
+          "val_ft_gain": 3.4799999999999898,
+          "slope": 0.1739999999999995,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              89.76
+            ],
+            [
+              10,
+              93.12
+            ],
+            [
+              20,
+              93.24
+            ]
+          ],
+          "mean_fs": 0.013839935883879662,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 89.06,
+          "val_after_ft": 92.44,
+          "val_ft_gain": 3.3799999999999955,
+          "slope": 0.16899999999999976,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              89.06
+            ],
+            [
+              10,
+              92.52
+            ],
+            [
+              20,
+              92.44
+            ]
+          ],
+          "mean_fs": 0.02031269483268261,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 84.84,
+          "val_after_ft": 91.14,
+          "val_ft_gain": 6.299999999999997,
+          "slope": 0.31499999999999984,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              84.84
+            ],
+            [
+              10,
+              90.96
+            ],
+            [
+              20,
+              91.14
+            ]
+          ],
+          "mean_fs": 0.02124454267323017,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 625881,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.3673046473690686,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\checkpoints\\pruned\\fanp_sp0.30_20260325_013723.pth",
+      "wall_clock_sec": 18.072983741760254
+    },
+    "0.5": {
+      "method": "fanp",
+      "target": 0.5,
+      "sparsity": 0.2699799413743212,
+      "test_acc": 90.51,
+      "pruning_rounds": 3,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 89.12,
+          "val_after_ft": 92.84,
+          "val_ft_gain": 3.719999999999999,
+          "slope": 0.18599999999999994,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              89.12
+            ],
+            [
+              10,
+              92.48
+            ],
+            [
+              20,
+              92.84
+            ]
+          ],
+          "mean_fs": 0.017075952142477036,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 83.36,
+          "val_after_ft": 92.02,
+          "val_ft_gain": 8.659999999999997,
+          "slope": 0.43299999999999983,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              83.36
+            ],
+            [
+              10,
+              91.44
+            ],
+            [
+              20,
+              92.02
+            ]
+          ],
+          "mean_fs": 0.01857146993279457,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 73.86,
+          "val_after_ft": 91.22,
+          "val_ft_gain": 17.36,
+          "slope": 0.868,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              73.86
+            ],
+            [
+              10,
+              90.14
+            ],
+            [
+              20,
+              91.22
+            ]
+          ],
+          "mean_fs": 0.0265477504581213,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 625881,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.3673046473690686,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\checkpoints\\pruned\\fanp_sp0.50_20260325_013723.pth",
+      "wall_clock_sec": 18.55241632461548
+    },
+    "0.7": {
+      "method": "fanp",
+      "target": 0.7,
+      "sparsity": 0.2699799413743212,
+      "test_acc": 90.17,
+      "pruning_rounds": 3,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 88.28,
+          "val_after_ft": 92.94,
+          "val_ft_gain": 4.659999999999997,
+          "slope": 0.23299999999999982,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              88.28
+            ],
+            [
+              10,
+              92.48
+            ],
+            [
+              20,
+              92.94
+            ]
+          ],
+          "mean_fs": 0.01460401713848114,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 86.22,
+          "val_after_ft": 92.12,
+          "val_ft_gain": 5.900000000000006,
+          "slope": 0.29500000000000026,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              86.22
+            ],
+            [
+              10,
+              91.66
+            ],
+            [
+              20,
+              92.12
+            ]
+          ],
+          "mean_fs": 0.015517991967499256,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 76.98,
+          "val_after_ft": 91.12,
+          "val_ft_gain": 14.14,
+          "slope": 0.7070000000000001,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              76.98
+            ],
+            [
+              10,
+              90.16
+            ],
+            [
+              20,
+              91.12
+            ]
+          ],
+          "mean_fs": 0.024659227579832077,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 625881,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.3673046473690686,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\checkpoints\\pruned\\fanp_sp0.70_20260325_013723.pth",
+      "wall_clock_sec": 16.6468505859375
+    },
+    "0.9": {
+      "method": "fanp",
+      "target": 0.9,
+      "sparsity": 0.2699799413743212,
+      "test_acc": 90.35,
+      "pruning_rounds": 3,
+      "round_log": [
+        {
+          "round": 0,
+          "sparsity": 0.0996237246096319,
+          "val_before_ft": 89.72,
+          "val_after_ft": 92.74,
+          "val_ft_gain": 3.019999999999996,
+          "slope": 0.1509999999999998,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              89.72
+            ],
+            [
+              10,
+              92.42
+            ],
+            [
+              20,
+              92.74
+            ]
+          ],
+          "mean_fs": 0.020459692925214767,
+          "rate_used": 0.1,
+          "n_pruned": 84830
+        },
+        {
+          "round": 1,
+          "sparsity": 0.1892850767583006,
+          "val_before_ft": 89.3,
+          "val_after_ft": 92.2,
+          "val_ft_gain": 2.9000000000000057,
+          "slope": 0.1450000000000003,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              89.3
+            ],
+            [
+              10,
+              91.82
+            ],
+            [
+              20,
+              92.2
+            ]
+          ],
+          "mean_fs": 0.01577744074165821,
+          "rate_used": 0.1,
+          "n_pruned": 76347
+        },
+        {
+          "round": 2,
+          "sparsity": 0.2699799413743212,
+          "val_before_ft": 78.5,
+          "val_after_ft": 91.26,
+          "val_ft_gain": 12.760000000000005,
+          "slope": 0.6380000000000002,
+          "overpruned": false,
+          "step_acc": [
+            [
+              0,
+              78.5
+            ],
+            [
+              10,
+              90.46
+            ],
+            [
+              20,
+              91.26
+            ]
+          ],
+          "mean_fs": 0.018231432884931564,
+          "rate_used": 0.1,
+          "n_pruned": 68712
+        }
+      ],
+      "param_total": 855770,
+      "param_nonzero": 625881,
+      "param_total_dense": 855770,
+      "compression_ratio": 1.3673046473690686,
+      "model_save_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\checkpoints\\pruned\\fanp_sp0.90_20260325_013723.pth",
+      "wall_clock_sec": 20.680887460708618
+    }
+  },
+  "meta": {
+    "run_id": "20260325_013723",
+    "dense_test_acc": 92.89,
+    "param_total_dense": 855770,
+    "param_nonzero_dense": 855770,
+    "run_timestamp": "20260325_013723",
+    "checkpoint": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\checkpoints\\resnet56_best.pth",
+    "config": {
+      "sparsity_levels": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "checkpoint_path": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\checkpoints\\resnet56_best.pth",
+      "data_dir": "C:\\Users\\Radhakrishna\\Desktop\\DL_Project\\fanp\\data\\downloads",
+      "batch_size": 128,
+      "num_workers": 0,
+      "fanp_base_rate": 0.1,
+      "fanp_tau": 0.5,
+      "fanp_max_rounds": 3,
+      "fanp_acc_batches": 3,
+      "ft_n_steps": 20,
+      "ft_lr": 0.005,
+      "ft_eval_interval": 10,
+      "device": "cuda",
+      "seed": 42,
+      "run_id": "20260325_013723"
+    },
+    "repro": {
+      "python_version": "3.12.0",
+      "torch_version": "2.6.0+cu124",
+      "seed": 42,
+      "cuda": {
+        "available": true,
+        "torch_cuda_version": "12.4",
+        "device_count": 1,
+        "devices": [
+          "NVIDIA GeForce RTX 4060 Laptop GPU"
+        ],
+        "cudnn_version": 90100
+      },
+      "git_commit": "edad40105ffe6de14cc906b974f507623c5ef3d2"
+    }
+  }
+}

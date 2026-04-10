@@ -4,56 +4,41 @@ Entry point: train the ResNet-56 baseline on CIFAR-10.
 Run from the fanp/ directory:
     python train_baseline.py
 """
+import argparse
 import sys
 import os
+from datetime import datetime
 sys.path.insert(0, os.path.dirname(__file__))
 
+from omegaconf import OmegaConf
 from training.trainer import train
 
-# Inline config (mirrors configs/base.yaml — swap to Hydra in Phase 2)
-cfg = {
-    "seed": 42,
-    "device": "cuda",
 
-    "data": {
-        "dataset":     "cifar10",
-        "data_dir":    "./data/downloads",
-        "batch_size":  128,
-        "num_workers": 0,   # 0 = main process only (avoids Windows shared memory crash)
-        "val_split":   0.1,
-    },
+def _default_run_name() -> str:
+    return f"baseline_resnet56_cifar10_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
-    "model": {
-        "arch":        "resnet56",
-        "num_classes": 10,
-    },
-
-    "training": {
-        "epochs":       200,
-        "lr":           0.1,
-        "momentum":     0.9,
-        "weight_decay": 1e-4,
-        "lr_milestones": [100, 150],
-        "lr_gamma":     0.1,
-    },
-
-    "logging": {
-        "use_wandb":    True,       # offline mode — logs saved locally in wandb/
-        "project":      "fanp",
-        "run_name":     "baseline_resnet56_cifar10",
-        "log_interval": 50,
-    },
-
-    "checkpoint": {
-        "save_dir":   "./checkpoints",
-        "save_every": 10,
-        "keep_best":  True,
-    },
-
-    # Resume is now auto-detected from resnet56_last.pth (latest epoch).
-    # Set to None to train from scratch.
-    "resume": None,
-}
+def load_cfg(config_path: str) -> dict:
+    """Load baseline training config from YAML via OmegaConf."""
+    cfg = OmegaConf.load(config_path)
+    cfg_dict = OmegaConf.to_container(cfg, resolve=True)
+    if not isinstance(cfg_dict, dict):
+        raise TypeError(f"Expected dict config, got {type(cfg_dict)}")
+    cfg_dict.setdefault("resume", None)
+    logging_cfg = cfg_dict.setdefault("logging", {})
+    if isinstance(logging_cfg, dict):
+        run_name = logging_cfg.get("run_name", "baseline_resnet56_cifar10")
+        if run_name == "baseline_resnet56_cifar10" or not run_name:
+            logging_cfg["run_name"] = _default_run_name()
+        logging_cfg["tags"] = ["baseline", "cifar10", "resnet56"]
+    return cfg_dict
 
 if __name__ == "__main__":
-    train(cfg)
+    parser = argparse.ArgumentParser(description="Train baseline from YAML config")
+    parser.add_argument(
+        "--config",
+        type=str,
+        default=os.path.join(os.path.dirname(__file__), "configs", "base.yaml"),
+        help="Path to YAML config file",
+    )
+    args = parser.parse_args()
+    train(load_cfg(args.config))

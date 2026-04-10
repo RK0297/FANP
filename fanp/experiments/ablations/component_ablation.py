@@ -31,6 +31,9 @@ import sys
 import os
 import json
 import argparse
+import platform
+import subprocess
+from datetime import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
@@ -43,6 +46,55 @@ from experiments.baselines.magnitude import MagnitudePruner
 from pruning.engine.adaptive_scheduler import AdaptivePruningScheduler
 from pruning.recovery.tracker import RecoveryTracker
 from metrics.sparsity import global_sparsity
+
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+
+
+def _resolve_project_path(path: str | None) -> str | None:
+    """Resolve relative paths from fanp project root."""
+    if path is None:
+        return None
+    if os.path.isabs(path):
+        return path
+    return os.path.abspath(os.path.join(PROJECT_ROOT, path))
+
+
+def _append_run_id(path: str, run_id: str, ext: str = ".json") -> str:
+    """Append run_id before extension to avoid overwrite across runs."""
+    root, old_ext = os.path.splitext(path)
+    final_ext = old_ext or ext
+    if root.endswith(f"_{run_id}"):
+        return root + final_ext
+    return f"{root}_{run_id}{final_ext}"
+
+
+def collect_repro_metadata(seed: int | None = None) -> dict:
+    """Capture reproducibility metadata for ablation outputs."""
+    metadata = {
+        "python_version": platform.python_version(),
+        "torch_version": torch.__version__,
+        "seed": seed,
+        "cuda": {
+            "available": torch.cuda.is_available(),
+            "torch_cuda_version": torch.version.cuda,
+            "device_count": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+            "devices": [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())]
+            if torch.cuda.is_available() else [],
+            "cudnn_version": torch.backends.cudnn.version() if torch.backends.cudnn.is_available() else None,
+        },
+    }
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=PROJECT_ROOT,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        ).strip()
+    except Exception:
+        commit = "unknown"
+    metadata["git_commit"] = commit
+    return metadata
 
 
 # ---------------------------------------------------------------------------
@@ -311,6 +363,14 @@ def run_ablation(cfg: dict | None = None) -> list:
         cfg["ft_eval_interval"] = cfg["quick_ft_eval_interval"]
         cfg["max_rounds"]     = cfg["quick_max_rounds"]
 
+    cfg["checkpoint_path"] = _resolve_project_path(cfg["checkpoint_path"])
+    cfg["data_dir"] = _resolve_project_path(cfg["data_dir"])
+    if cfg.get("output_path"):
+        cfg["output_path"] = _resolve_project_path(cfg["output_path"])
+
+    run_id = cfg.get("run_id") or datetime.now().strftime("%Y%m%d_%H%M%S")
+    cfg["run_id"] = run_id
+
     torch.manual_seed(cfg["seed"])
     device    = torch.device(cfg["device"] if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss()
@@ -341,10 +401,19 @@ def run_ablation(cfg: dict | None = None) -> list:
     print_ablation_table(all_results, cfg["target_sparsity"])
 
     # Save results
-    out_path = cfg["output_path"]
+    out_path = _append_run_id(cfg["output_path"], run_id, ext=".json")
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     with open(out_path, "w") as f:
-        json.dump(all_results, f, indent=2)
+        json.dump({
+            "meta": {
+                "run_id": run_id,
+                "run_timestamp": run_id,
+                "checkpoint": cfg["checkpoint_path"],
+                "config": {k: v for k, v in cfg.items() if not k.startswith("quick_")},
+                "repro": collect_repro_metadata(seed=cfg.get("seed")),
+            },
+            "results": all_results,
+        }, f, indent=2)
     print(f"Ablation results saved to {out_path}")
 
     return all_results

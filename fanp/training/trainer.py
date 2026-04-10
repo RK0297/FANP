@@ -119,11 +119,17 @@ def train(cfg: dict):
             import wandb
             import os
             os.environ["WANDB_MODE"] = "offline"   # logs locally, sync later with: wandb sync wandb/
+            tags = cfg["logging"].get("tags", [])
             wandb_run = wandb.init(
                 project=cfg["logging"]["project"],
                 name=cfg["logging"]["run_name"],
+                tags=tags,
                 config=cfg,
             )
+            wandb_run.name = cfg["logging"]["run_name"]
+            wandb_run.summary["run_name"] = cfg["logging"]["run_name"]
+            wandb_run.summary["best_val_acc"] = 0.0
+            wandb_run.summary["test_acc"] = 0.0
             print("W&B logging enabled (offline mode -- run 'wandb sync wandb/' to upload).")
         except Exception as e:
             print(f"W&B init failed ({e}) — continuing without logging.")
@@ -237,6 +243,8 @@ def train(cfg: dict):
                 "cfg":        cfg,
             }, best_path)
             print(f"  >> New best val acc: {best_acc:.2f}% -- saved to {best_path}")
+            if wandb_run:
+                wandb_run.summary["best_val_acc"] = best_acc
 
         # Always save latest checkpoint (overwrites each epoch — safe resume point)
         torch.save({
@@ -262,6 +270,7 @@ def train(cfg: dict):
     if wandb_run:
         wandb_run.summary["test_acc"]  = test_acc
         wandb_run.summary["best_val_acc"] = best_acc
+        wandb_run.summary["run_name"] = cfg["logging"]["run_name"]
         wandb_run.finish()
 
     return model, test_acc

@@ -40,6 +40,8 @@ import json
 import argparse
 import math
 import time
+import platform
+import subprocess
 from datetime import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -50,6 +52,7 @@ import torch.nn as nn
 from data.cifar import get_cifar10_loaders
 from models.resnet import resnet56
 from experiments.baselines.magnitude import MagnitudePruner
+from pruning.engine.structured import build_pruned_model_path, build_run_id
 from pruning.engine.adaptive_scheduler import AdaptivePruningScheduler
 from pruning.recovery.tracker import RecoveryTracker
 from metrics.sparsity import global_sparsity
@@ -65,6 +68,43 @@ def _resolve_project_path(path: str | None) -> str | None:
     if os.path.isabs(path):
         return path
     return os.path.abspath(os.path.join(PROJECT_ROOT, path))
+
+
+def _append_run_id(path: str, run_id: str, ext: str = ".json") -> str:
+    """Append run_id before extension to avoid overwrite across runs."""
+    root, old_ext = os.path.splitext(path)
+    final_ext = old_ext or ext
+    if root.endswith(f"_{run_id}"):
+        return root + final_ext
+    return f"{root}_{run_id}{final_ext}"
+
+
+def collect_repro_metadata(seed: int | None = None) -> dict:
+    """Capture reproducibility metadata for experiment outputs."""
+    metadata = {
+        "python_version": platform.python_version(),
+        "torch_version": torch.__version__,
+        "seed": seed,
+        "cuda": {
+            "available": torch.cuda.is_available(),
+            "torch_cuda_version": torch.version.cuda,
+            "device_count": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+            "devices": [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())]
+            if torch.cuda.is_available() else [],
+            "cudnn_version": torch.backends.cudnn.version() if torch.backends.cudnn.is_available() else None,
+        },
+    }
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=PROJECT_ROOT,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        ).strip()
+    except Exception:
+        commit = "unknown"
+    metadata["git_commit"] = commit
+    return metadata
 
 
 # ---------------------------------------------------------------------------
@@ -345,7 +385,11 @@ def run_fanp(
     # Save the pruned model for Phase 4 ONNX export
     pruned_dir      = os.path.join(os.path.dirname(os.path.abspath(cfg["checkpoint_path"])), "pruned")
     os.makedirs(pruned_dir, exist_ok=True)
-    model_save_path = os.path.join(pruned_dir, f"fanp_sp{sparsity:.2f}.pth")
+    model_save_path = build_pruned_model_path(
+        pruned_dir=pruned_dir,
+        target_sparsity=sparsity,
+        run_id=cfg.get("run_id"),
+    )
     torch.save({"model_state": model.state_dict(), "sparsity": actual_sp, "test_acc": acc}, model_save_path)
     print(f"  Pruned model saved to {model_save_path}")
 
@@ -495,12 +539,10 @@ def run_experiment(cfg: dict | None = None) -> dict:
     device    = torch.device(cfg["device"] if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss()
 
-    # Build timestamped output path (never overwrite a previous run)
-    ts       = datetime.now().strftime("%Y%m%d_%H%M%S")
-    out_path = cfg.get("output_path") or _resolve_project_path(f"./results/main_{ts}.json")
-    # If not already timestamped, inject the timestamp
-    if os.path.normpath(out_path) == os.path.normpath(_resolve_project_path("./results/main_experiment.json")):
-        out_path = _resolve_project_path(f"./results/main_{ts}.json")
+    run_id = cfg.get("run_id") or build_run_id()
+    cfg["run_id"] = run_id
+    out_path = cfg.get("output_path") or _resolve_project_path("./results/main.json")
+    out_path = _append_run_id(out_path, run_id, ext=".json")
 
     sparsity_levels = cfg["sparsity_levels"]
 
@@ -515,6 +557,9 @@ def run_experiment(cfg: dict | None = None) -> dict:
                 continue
             results[method] = {float(k): v for k, v in results[method].items()}
         out_path = resume_path   # continue writing to the same file
+        results.setdefault("meta", {})
+        results["meta"].setdefault("run_id", run_id)
+        results["meta"].setdefault("repro", collect_repro_metadata(seed=cfg.get("seed")))
         completed = set(results["magnitude"].keys())
         print(f"Resuming from {resume_path}")
         print(f"Already completed sparsity levels: {[f'{s:.0%}' for s in sorted(completed)]}")
@@ -544,12 +589,14 @@ def run_experiment(cfg: dict | None = None) -> dict:
         del _dense_model
         print(f"  Dense baseline: test_acc={_dense_acc:.2f}%  params={_dense_params['total']:,}")
         results["meta"] = {
+            "run_id":              run_id,
             "dense_test_acc":      _dense_acc,
             "param_total_dense":   _dense_params["total"],
             "param_nonzero_dense": _dense_params["nonzero"],
-            "run_timestamp":       ts,
+            "run_timestamp":       run_id,
             "checkpoint":          cfg["checkpoint_path"],
             "config":              {k: v for k, v in cfg.items() if not k.startswith("quick_")},
+            "repro":               collect_repro_metadata(seed=cfg.get("seed")),
         }
         _save_results(results, out_path)
 
