@@ -51,3 +51,11 @@ htmlcov/
 # WandB (only offline runs, keep online tracking)
 wandb/offline-run*
 .wandb
+
+# FANP local experiment artifacts
+fanp/wandb/
+fanp/checkpoints/pruned/
+archive/legacy_root_artifacts/
+
+# Optional: ignore all top-level W&B local files
+wandb/

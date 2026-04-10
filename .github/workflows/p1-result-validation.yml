@@ -1,0 +1,30 @@
+name: P1 Result Validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "fanp/**"
+      - ".github/workflows/p1-result-validation.yml"
+  pull_request:
+    paths:
+      - "fanp/**"
+      - ".github/workflows/p1-result-validation.yml"
+
+jobs:
+  validate-results:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fanp
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run P1 validation
+        run: python test_phase_p1.py
