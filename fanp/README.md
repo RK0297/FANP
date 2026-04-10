@@ -1,6 +1,6 @@
 # FANP — Forgetting-Aware Neural Network Pruning
 
-**Learning What NOT to Forget During Compression**
+## Learning What NOT to Forget During Compression
 
 Domain: Model Compression / Structured Pruning
 Framework: PyTorch 2.6 + torch-pruning 1.6
@@ -67,6 +67,7 @@ Neural network pruning removes weights or entire filters from a trained model to
 FANP closes this loop. It measures *forgetting* — the real drop in model performance when a neuron is actually removed — and uses that signal to decide what to prune next. The result is a pruner that is guided by consequences, not predictions.
 
 This codebase implements the full FANP pipeline from scratch:
+
 - A pre-trained baseline (ResNet-56 on CIFAR-10)
 - Five importance estimators including the composite Forgetting Score
 - An adaptive pruning scheduler that slows down when the model is struggling
