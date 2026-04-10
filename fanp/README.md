@@ -8,6 +8,8 @@ Core Novelty: Forgetting Dynamics as a First-Class Pruning Signal
 
 ---
 
+<!-- markdownlint-disable MD024 MD031 MD032 MD036 MD040 MD060 -->
+
 ## Project Final Status (April 11, 2026)
 
 - Status: Completed and pushed to origin/main
