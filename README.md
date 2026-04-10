@@ -6,9 +6,11 @@
 > **Learning What NOT to Forget During Compression**
 
 ## Overview
+
 Traditional pruning methods rely on weight magnitude or gradients, making estimations *before* pruning occurs. **FANP (Forgetting-Aware Neural Network Pruning)** closes this loop by introducing *forgetting dynamics* as a first-class pruning signal. A neuron's true importance is measured empirically based on how severely the model forgets its representations when that neuron is removed.
 
 ### Core Novelty
+
 - **Dynamic Importance Signal**: Utilizes forgetting rate under removal instead of static L1 norms.
 - **Empirical Fisher & Gradient Variance**: Incorporates the full empirical Fisher and high-variance gradients to identify fragile (and thus important) pathways.
 - **Post-hoc Loss Spikes**: Centralizes the measurement of information loss during the compression phase.
@@ -16,7 +18,9 @@ Traditional pruning methods rely on weight magnitude or gradients, making estima
 ---
 
 ## Project Structure
+
 The main implementation resides in the `fanp/` directory:
+
 - `configs/`: YAML experiment configuration files.
 - `experiments/`: Main pruning pipeline and component ablation scripts.
 - `models/`: ResNet definitions and test architectures.
@@ -28,6 +32,7 @@ The main implementation resides in the `fanp/` directory:
 ## Quick Start
 
 ### 1. Environment Setup
+
 ```powershell
 # Establish environment & install dependencies
 cd fanp
@@ -35,6 +40,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Reproducing Results
+
 Execute the pipeline stages manually:
 
 ```powershell
@@ -56,4 +62,5 @@ wandb sync --entity <your-entity> --project fanp wandb/offline-run-*
 ---
 
 ## Status
+
 This project is structurally complete. It delivers a fully tracked pipeline establishing the viability of forgetting dynamics, rather than strict magnitude alone, as an effective signal for localized and structured deep neural network pruning.
