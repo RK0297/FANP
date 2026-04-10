@@ -8,6 +8,37 @@ Core Novelty: Forgetting Dynamics as a First-Class Pruning Signal
 
 ---
 
+## Project Final Status (April 11, 2026)
+
+- Status: Completed and pushed to origin/main
+- Final commit: 78beca5
+- Scope delivered: baseline training, FANP pruning pipeline, ablation study, result schema validation, CI workflow, and W&B offline->sync tracking
+
+### Quick Reproduce
+
+From repository root:
+
+```powershell
+cd fanp
+$env:PYTHONIOENCODING="utf-8"
+python train_baseline.py --config configs/base.yaml
+python experiments/main_experiment.py
+python experiments/ablations/component_ablation.py
+python test_phase_p1.py
+wandb sync --entity radhebharuka29-iiit-dharwad --project fanp wandb/offline-run-*
+```
+
+### Final Result Snapshot
+
+- Dense baseline test accuracy: 92.89%
+- FANP at 90% sparsity: 90.35%
+- Magnitude at 90% sparsity: 23.57%
+- Magnitude + FT at 90% sparsity: 76.16%
+
+Reference summary: docs/PROJECT_ONE_PAGE_STATUS.md
+
+---
+
 ## Table of Contents
 
 1. [What Is This Project](#1-what-is-this-project)
